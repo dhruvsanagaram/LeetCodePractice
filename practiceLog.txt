@@ -62,3 +62,107 @@ class Solution {
         }
     }
 }
+
+#1/6/23 - Valid Parentheses - Stacks - Easy
+class Solution {
+    public boolean isValid(String s) {
+        System.out.println(s);
+        Stack<Character> parentheses = new Stack<Character>();
+        String tempStr = new String();
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '['){
+                parentheses.push(s.charAt(i));
+            }
+            else{
+                if(s.charAt(i) == ')' && (parentheses.isEmpty() 
+                    || parentheses.pop() != '(')){
+                    return false;
+                }
+                if(s.charAt(i) == ']' && (parentheses.isEmpty() 
+                    || parentheses.pop() != '[')){
+                    return false;
+                }
+                if(s.charAt(i) == '}' && (parentheses.isEmpty() 
+                    || parentheses.pop() != '{')){
+                    return false;
+                }
+            }
+        }
+        if(parentheses.isEmpty()){
+            return true;
+        }
+        return false;
+        /*
+        System.out.println(s);
+        Stack<Character> parentheses = new Stack<Character>();
+        String tempStr = new String();
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '['){
+                parentheses.push(s.charAt(i));
+            }
+            else{
+                if(s.charAt(i) == ')'){
+                    int j = i;
+                    while(j >= 0 && s.charAt(j) != '('){
+                        tempStr += parentheses.pop();
+                        j--;
+                    }
+                    if(j < 0){
+                        return false;
+                    }
+                    System.out.println(parentheses);
+                    if(!parentheses.isEmpty()){
+                        parentheses.pop();  
+                    }
+                    while(j != i){
+                        System.out.println(tempStr);
+                        parentheses.push(tempStr.charAt(tempStr.length()-1-i));
+                        j++;
+                    }
+                    tempStr = "";
+                }
+                if(s.charAt(i) == ']'){
+                    int j = i;
+                    while(j >= 0 && s.charAt(j) != '['){
+                        tempStr += parentheses.pop();
+                        j--;
+                    }
+                    if(j < 0){
+                        return false;
+                    }
+                    if(!parentheses.isEmpty()){
+                        parentheses.pop();  
+                    }
+                    while(j != i){
+                        parentheses.push(tempStr.charAt(tempStr.length()-1-i));
+                        j++;
+                    }
+                    tempStr = "";
+                }
+                if(s.charAt(i) == '}'){
+                    int j = i;
+                    while(j >= 0 && s.charAt(j) != '{'){
+                        tempStr += parentheses.pop();
+                        j--;
+                    }
+                    if(j < 0){
+                        return false;
+                    }
+                    if(!parentheses.isEmpty()){
+                        parentheses.pop();  
+                    }                    while(j != i){
+                        parentheses.push(tempStr.charAt(tempStr.length()-1-i));
+                        j++;
+                    }
+                    tempStr = "";
+                }
+            }
+        }
+        if(parentheses.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+    */
+}
+}
