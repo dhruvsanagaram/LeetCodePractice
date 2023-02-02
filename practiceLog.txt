@@ -306,3 +306,31 @@ class Solution {
         */
     }
 }
+
+#2/1/23 - Maximum Ascending Subarray Sum - Arrays - Easy
+class Solution {
+    public int maxAscendingSum(int[] nums) {
+        int maxSum = nums[0];
+        int i = 1;
+        int curSum = nums[0];
+        while(i < nums.length){
+            System.out.println("Cur:" + nums[i]);
+            System.out.println("Before:" + nums[i-1]);
+            System.out.println("CurSum:" + curSum);
+            System.out.println("MaxSum:"+maxSum);
+            System.out.println();
+            if(nums[i] <= nums[i-1]){
+                if(curSum > maxSum){
+                    maxSum = curSum;
+                }
+                curSum = 0;
+            }
+            curSum += nums[i];
+            i++;
+        }
+        if(maxSum < curSum){
+            maxSum = curSum;
+        }
+        return maxSum;
+    }
+}
