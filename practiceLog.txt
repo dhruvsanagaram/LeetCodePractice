@@ -335,31 +335,6 @@ class Solution {
     }
 }
 
-#7/30/23 - Maximum Ascending Subarray Sum - Arrays - Easy
-class Solution {
-    public int maxAscendingSum(int[] nums) {
-        if(nums.length == 0)
-          return 0;
-        int tempMax = nums[0];
-        int maxSum = tempMax;
-        int start = 0;
-        int end = 1;
-        while(start != nums.length && end < nums.length){
-            if(nums[end] <= nums[end - 1]){
-                start = end;
-                end = start+1;
-                tempMax = nums[start];
-            }
-            else{
-                tempMax += nums[end];
-                end++;
-            }
-            maxSum = Math.max(tempMax, maxSum);
-        }
-        return maxSum;
-    }
-}
-
 
 #2/2/23 - Remove Duplicates - LinkedList - Easy
 class Solution {
@@ -646,5 +621,58 @@ class Solution {
             return -1;
         }
         return 1 + Math.max(leftBalance, rightBalance);
+    }
+}
+
+#7/30/23 - Maximum Ascending Subarray Sum - Arrays - Easy
+class Solution {
+    public int maxAscendingSum(int[] nums) {
+        if(nums.length == 0)
+          return 0;
+        int tempMax = nums[0];
+        int maxSum = tempMax;
+        int start = 0;
+        int end = 1;
+        while(start != nums.length && end < nums.length){
+            if(nums[end] <= nums[end - 1]){
+                start = end;
+                end = start+1;
+                tempMax = nums[start];
+            }
+            else{
+                tempMax += nums[end];
+                end++;
+            }
+            maxSum = Math.max(tempMax, maxSum);
+        }
+        return maxSum;
+    }
+}
+
+#7/30/23 - Maximum Average Subarray 1 - Arrays - Easy
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        if(nums.length == 0){
+            return 0;
+        }
+
+        int currSum = 0;
+        for(int i = 0; i < k;i++){
+            currSum += nums[i];
+        }
+
+        int start = 0;
+        int end = k-1;
+        int tempSum = currSum;
+
+        while(end + 1 != nums.length){
+            tempSum = tempSum - nums[start] + nums[end+1];
+            if(tempSum > currSum){
+                currSum = tempSum;
+            }
+            start += 1;
+            end += 1;
+        }
+        return (double)currSum/k;
     }
 }
