@@ -676,3 +676,63 @@ class Solution {
         return (double)currSum/k;
     }
 }
+
+#8/7/23 - Valid Parentheses - Stacks - Easy
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        HashMap<Character, Character> map = new HashMap<Character, Character>();
+        map.put(')', '(');
+        map.put('}', '{');
+        map.put(']', '[');
+
+        for(int i = 0; i < s.length(); i++){
+            if(map.containsKey(s.charAt(i))){
+                if(stack.isEmpty() || map.get(s.charAt(i)) != stack.pop()){
+                    return false;
+                } 
+            }
+            else{
+                stack.push(s.charAt(i));
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+#8/7/23 - Best Time to Buy and Sell Stock - Two Pointer - Easy
+class Solution {
+    public int maxProfit(int[] prices) {
+        int left = 0;
+        int right = 1;
+        int maxDiff = 0;
+        while(right != prices.length){
+            if(prices[right] < prices[left]){
+                left = right;
+            }
+            else{
+                maxDiff = Math.max(maxDiff, prices[right] - prices[left]);
+            }
+
+            right++;
+        }
+        return maxDiff;
+    }
+}
+
+#8/7/23 - Move Zeros - Two Pointer - Easy
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int left = 0;
+        int right = 0;
+        while(right != nums.length){
+            if(nums[right] != 0){
+                int temp = nums[right];
+                nums[right] = nums[left];
+                nums[left] = temp;
+                left++;
+            }
+            right++;
+        }        
+    }
+}
