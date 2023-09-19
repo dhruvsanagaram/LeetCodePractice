@@ -16,3 +16,4 @@ class Solution {
         return 1 + Math.max(leftSubTreeHeight, rightSubTreeHeight);
     }
 }
+
